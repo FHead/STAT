@@ -6,6 +6,7 @@ from pathlib import Path
 import re
 import sys
 import pickle
+import joblib
 
 logging.basicConfig(
     stream=sys.stdout,
@@ -13,7 +14,7 @@ logging.basicConfig(
     level=os.getenv('LOGLEVEL', 'info').upper()
 )
 
-AllData = None
+AllData = {}
 workdir = None
 cachedir = None
 systems = None
@@ -119,7 +120,11 @@ def parse_system(system):
 
     """
     match = re.fullmatch('([A-Z]?[a-z])([A-Z]?[a-z])([0-9]+)', system)
-    return match.group(1, 2), int(match.group(3))
+    print(system)
+    print(match)
+    if type(match) == tuple and len(match) == 3:
+        return match.group(1, 2), int(match.group(3))
+    return ('HI', 'HI'), 100
 
 
 class lazydict(dict):

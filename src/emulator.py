@@ -17,13 +17,8 @@ import logging
 import pickle
 
 import numpy as np
-
-try:                                      # compatibility hack: first try to import joblib the deprecated way
-    from sklearn.externals import joblib  # raises an ImportError if sklearn.externals.joblib is not found
-except ImportError:                       # if that failed, then try to import joblib the correct way
-    import joblib                         # this shouldn't fail, but if it does, run 'pip install joblib scikit-learn --user' to resolve
-
 from sklearn.decomposition import PCA
+import joblib
 from sklearn.gaussian_process import GaussianProcessRegressor as GPR
 from sklearn.gaussian_process import kernels
 from sklearn.preprocessing import StandardScaler
@@ -70,10 +65,10 @@ class Emulator:
 
     """
 
-    def __init__(self, system, npc=10, nrestarts=0):
+    def __init__(self, system, npc=10, nrestarts=0, nu=2.5, alpha=0.6, noise=-1, kernelchoice="Matern"):
         logging.info(
-            'training emulator for system %s (%d PC, %d restarts)',
-            system, npc, nrestarts
+            'training emulator for system %s (%d PC, %d restarts, alpha=%.2f, kernel=%s, noise=%f)',
+            system, npc, nrestarts, alpha, kernelchoice, noise
         )
 
         Y = []
@@ -113,21 +108,66 @@ class Emulator:
 
         ptp = design.max - design.min
         print(ptp)
-        kernel = (
-            1. * kernels.Matern(
-                length_scale=ptp,
-                length_scale_bounds=np.outer(ptp, (.1, 10))
+
+        noise0 = 0.5**2
+        noisemin = 0.01**2
+        noisemax = 1**2
+        if noise >= 0:
+            noise0 = noise**2
+            noisemin = noise**2 * 0.999
+            noisemax = noise**2 * 1.001
+
+        if kernelchoice == "Matern":
+            kernel = (kernels.Matern(
+                length_scale = ptp,
+                length_scale_bounds = np.outer(ptp, (0.1, 10)),
+                nu = nu))
+        elif kernelchoice == "MaternNoise":
+            kernel = (kernels.Matern(
+                length_scale = ptp,
+                length_scale_bounds = np.outer(ptp, (0.1, 10)),
+                nu = nu)
+                + kernels.WhiteKernel(
+                noise_level = noise0,
+                noise_level_bounds = (noisemin, noisemax)))
+        elif kernelchoice == "MaternNoise1":
+            kernel = (1. * kernels.Matern(
+                length_scale = ptp,
+                length_scale_bounds = np.outer(ptp, (0.1, 10)),
+                nu = nu)
+                + kernels.WhiteKernel(
+                noise_level = noise0,
+                noise_level_bounds = (noisemin, noisemax)))
+        elif kernelchoice == "RBF":
+            kernel = (kernels.RBF(
+                length_scale = ptp,
+                length_scale_bounds = np.outer(ptp, (0.1, 10))))
+        else:
+            kernel = (
+                # kernels.ConstantKernel(1.0, (1e-3, 1e3))
+                kernels.Matern(
+                    length_scale = ptp,
+                    length_scale_bounds = np.outer(ptp, (1e-3, 1e3)),
+                    nu = nu
+                )
+                # 1 * kernels.RBF(
+                #     length_scale = ptp,
+                #     length_scale_bounds = np.outer(ptp, (1e-3, 1e3))
+                # )
+                # 1. * kernels.RationalQuadratic(
+                #     length_scale = ptp,
+                #     length_scale_bounds = np.outer(ptp, (1e-3, 1e3))
+                # )
+                # + kernels.WhiteKernel(
+                #     noise_level = 0.001**2,
+                #     noise_level_bounds = (0.00001**2, 0.1**2)
+                # )
             )
-            # kernels.WhiteKernel(
-            #     noise_level=.1**2,
-            #     noise_level_bounds=(.01**2, 1)
-            # )
-        )
 
         # Fit a GP (optimize the kernel hyperparameters) to each PC.
         self.gps = [
             GPR(
-                kernel=kernel, alpha=0,
+                kernel=kernel, alpha=alpha,
                 n_restarts_optimizer=nrestarts,
                 copy_X_train=False
             ).fit(design, z)
@@ -215,7 +255,7 @@ class Emulator:
             } for obs, slices in self._slices.items()
         }
 
-    def predict(self, X, return_cov=False, extra_std=0):
+    def predict(self, X, return_cov=False, extra_std=0.0):
         """
         Predict model output at `X`.
 
@@ -337,6 +377,19 @@ if __name__ == '__main__':
         '--retrain', action='store_true',
         help='retrain even if emulator is cached'
     )
+
+    parser.add_argument(
+        '--nu', type=float,
+        help='nu parameter'
+    )
+
+    parser.add_argument('--alpha', type = float, help = "alpha parameter", default = 0.0)
+
+    parser.add_argument('--noise', type = float, help = "noiselevel fix", default = -1)
+
+    parser.add_argument('--kernelchoice', help = "what kernel to use", default = "Matern",
+        choices = ["Matern", "MaternNoise", "MaternNoise1", "RBF"])
+
     parser.add_argument(
         'systems', nargs='*', type=arg_to_system,
         default=systems, metavar='SYSTEM',
