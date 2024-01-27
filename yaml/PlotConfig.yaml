@@ -1,5 +1,17 @@
 
 ObservablePlot:
+   - Key: ['CMS_2760_Hadron_ch_0_5', 'ATLAS_2760_Hadron_ch_5_10', 'ALICE_2760_Hadron_ch_10_20']
+     Suffix: 'ChargedHadron2760'
+     Label: ['CMS 0-5%', 'ATLAS 5-10%', 'ALICE 10-20%']
+     Common: 'Charged Hadron 2.76 TeV'
+   - Key: ['ALICE_5020_Jet_R04_0_10', 'ATLAS_5020_Jet_R04_0_10', 'CMS_5020_Jet_R04_0_10']
+     Suffix: 'Jet5020'
+     Label: ['ALICE 0-10%', 'ATLAS 0-10%', 'CMS 0-10%']
+     Common: 'Jet R = 0.4, 5.02 TeV'
+   - Key: ['PHENIX_200_Hadron_pi0_0_10', 'STAR_200_ChargedJet_R04_0_10']
+     Suffix: 'PHENIX_Pi0_STAR_ChJetR04'
+     Label: ['PHENIX pi0', 'STAR Jet R 0.4']
+     Common: '200 GeV, 0-10%'
    - Key: ['ALICE_2760_Hadron_ch_0_5', 'ALICE_2760_Hadron_ch_5_10', 'ALICE_2760_Hadron_ch_10_20', 'ALICE_2760_Hadron_ch_20_30', 'ALICE_2760_Hadron_ch_30_40', 'ALICE_2760_Hadron_ch_40_50']
      Suffix: 'ALICE_Hadron2760'
      Label: ['0-5%', '5-10%', '10-20%', '20-30%', '30-40%', '40-50%']

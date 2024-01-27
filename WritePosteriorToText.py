@@ -24,7 +24,6 @@ Posterior = Emulator.predict(MCMCSamples)
 for Item in DataList:
     np.savetxt(f'result/{tag}/txt/' + Item + '_Posterior.txt.gz', Posterior['R_AA'][Item])
 
-
 # Write the samples out
 np.savetxt(f'result/{tag}/txt/MCMCSamples.txt', MCMCSamples)
 
@@ -76,5 +75,4 @@ def qhat(T=0, E=0, Q=0, parameters=None) -> float:
 
 Y = [qhat(T = 0.2, E = 100, Q = 0, parameters = x) for x in MCMCSamples]
 np.savetxt(f'result/{tag}/txt/QHat_02_100_0.txt', Y)
-
 
