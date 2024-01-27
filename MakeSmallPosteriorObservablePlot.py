@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.ticker import ScalarFormatter, NullFormatter
+from matplotlib.collections import PatchCollection
+from matplotlib.patches import Rectangle
 import numpy as np
 import yaml
 from pathlib import Path
@@ -44,6 +46,28 @@ if DoAlternate == True:
     MCMCSamples2 = chain.load()
     Examples2 = MCMCSamples2[ np.random.choice(range(len(MCMCSamples2)), 500), :]
     TempPrediction2 = {"HeavyIon": Emulator.predict(Examples2)}
+
+
+# Function to plot error boxes
+def MakeErrorBoxes(ax,xdata,ydata,xerror,yerror,fc='r',ec='None',alpha=0.5):
+    # Create list for all the error patches
+    errorboxes = []
+
+    print(xdata)
+    print(ydata)
+    print(xerror)
+    print(yerror)
+
+    # Loop over data points; create box from errors at each point
+    for xc,yc,xe,ye in zip(xdata,ydata,xerror.T,yerror.T):
+        rect = Rectangle((xc-xe,yc-ye),xe*2,ye*2)
+        errorboxes.append(rect)
+
+    # Create patch collection with specified colour/alpha
+    pc = PatchCollection(errorboxes,facecolor=fc,alpha=alpha,edgecolor=ec)
+
+    # Add collection to axes
+    ax.add_collection(pc)
 
 def MakePlot(Item):
     # Let's not remove things silently.  We should let fails fail for this
@@ -95,6 +119,8 @@ def MakePlot(Item):
         DX = AllData["data"][S1][O][S2]['x']
         DY = AllData["data"][S1][O][S2]['y']
         DE = np.sqrt(AllData["data"][S1][O][S2]['yerr']['stat'][:,0]**2 + AllData["data"][S1][O][S2]['yerr']['sys'][:,0]**2)
+        DEStat = AllData["data"][S1][O][S2]['yerr']['stat'][:,0]
+        DESys = AllData["data"][S1][O][S2]['yerr']['sys'][:,0]
 
         if DoAlternate == True:
             for j, y in enumerate(TempPrediction2[S1][O][S2]):
@@ -108,7 +134,10 @@ def MakePlot(Item):
                     ax.plot(DX, y, 'b-', alpha=0.025, label = 'Nominal' if j == 0 else '')
                 else:
                     ax.plot([np.floor(DX[0] * 0.9), np.ceil(DX[0] * 1.1)], [y[0], y[0]], 'b-', alpha=0.025, label = 'Nominal' if j == 0 else '')
-        ax.errorbar(DX, DY, yerr = DE, fmt='ro')
+
+        RangeX = DX[-1] - DX[0]
+        MakeErrorBoxes(ax, DX, DY, np.array([RangeX * 0.02] * len(DX)), DESys, 'r', 'None', 0.5)
+        ax.errorbar(DX, DY, yerr = DEStat, xerr = DX[-1] * 0.02, fmt='ro')
         ax.tick_params(axis = 'x', labelsize = fontsize)
         ax.tick_params(axis = 'y', labelsize = fontsize)
 
