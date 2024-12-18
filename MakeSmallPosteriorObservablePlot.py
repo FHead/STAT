@@ -53,11 +53,6 @@ def MakeErrorBoxes(ax,xdata,ydata,xerror,yerror,fc='r',ec='None',alpha=0.5):
     # Create list for all the error patches
     errorboxes = []
 
-    print(xdata)
-    print(ydata)
-    print(xerror)
-    print(yerror)
-
     # Loop over data points; create box from errors at each point
     for xc,yc,xe,ye in zip(xdata,ydata,xerror.T,yerror.T):
         rect = Rectangle((xc-xe,yc-ye),xe*2,ye*2)
