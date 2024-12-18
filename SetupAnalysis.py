@@ -154,12 +154,15 @@ if 'DataCut' in Setup and 'MinPT' in Setup['DataCut']:
         RawPredictionError[Item]['Prediction'] = np.delete(RawPredictionError[Item]["Prediction"], range(0, DeleteCount), axis = 1)
 
 if 'DataCut' in Setup and 'MaxPT' in Setup['DataCut']:
+    print("MaxPT " + str(Setup["DataCut"]["MaxPT"]) + "detected.")
     for Item in DataList:
-        DeleteCount = sum(i < Setup['DataCut']['MaxPT'] for i in RawData[Item]["Data"]["x"])
+        DeleteCount = sum(i > Setup['DataCut']['MaxPT'] for i in RawData[Item]["Data"]["x"])
         Size = len(RawData[Item]["Data"]["x"])
         DeleteRawData(RawData[Item], range(Size - DeleteCount, Size))
         RawPrediction[Item]['Prediction'] = np.delete(RawPrediction[Item]["Prediction"], range(Size - DeleteCount, Size), axis = 1)
         RawPredictionError[Item]['Prediction'] = np.delete(RawPredictionError[Item]["Prediction"], range(Size - DeleteCount, Size), axis = 1)
+
+# print(RawData)
 
 # If some items do not survive the low/high energy cut, remove them from the list
 EmptyList = []

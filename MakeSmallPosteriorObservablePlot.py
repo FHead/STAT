@@ -26,7 +26,7 @@ if args.Alternate != '':
 if args.Suffix != '':
     args.Suffix = '_' + args.Suffix
 
-fontsize = 25
+fontsize = 22
 
 import src
 src.Initialize()
@@ -53,6 +53,11 @@ def MakeErrorBoxes(ax,xdata,ydata,xerror,yerror,fc='r',ec='None',alpha=0.5):
     # Create list for all the error patches
     errorboxes = []
 
+    # print(xdata)
+    # print(ydata)
+    # print(xerror)
+    # print(yerror)
+
     # Loop over data points; create box from errors at each point
     for xc,yc,xe,ye in zip(xdata,ydata,xerror.T,yerror.T):
         rect = Rectangle((xc-xe,yc-ye),xe*2,ye*2)
@@ -68,12 +73,15 @@ def MakePlot(Item):
     # Let's not remove things silently.  We should let fails fail for this
     # ToPlot = [x for x in ToPlot if x in AllData["observables"][0][1]]
 
-    ToPlot = Item['Key']
-    Suffix = Item['Suffix']
-    Label  = Item['Label']
-    Common = Item['Common']
-    Logx   = Item['Logx'] if 'Logx' in Item else []
-    Tickx  = Item['Tickx'] if 'Tickx' in Item else [[]]
+    ToPlot     = Item['Key']
+    Suffix     = Item['Suffix']
+    Label      = Item['Label']
+    Common     = Item['Common']
+    Logx       = Item['Logx'] if 'Logx' in Item else []
+    Tickx      = Item['Tickx'] if 'Tickx' in Item else [[]]
+    XRange     = Item['XRange'] if 'XRange' in Item else []
+    Guest      = Item['Guest'] if 'Guest' in Item else []
+    GuestLabel = Item['GuestLabel'] if 'GuestLabel' in Item else []
 
     if Suffix != "":
         Suffix = "_" + Suffix
@@ -93,7 +101,7 @@ def MakePlot(Item):
         axes = [axes]
 
     for i, ax in enumerate(axes):
-        ax.set_xlabel(r"$p_{T}$ (GeV)", fontsize = fontsize)
+        ax.set_xlabel(r"$p_{T}$ (GeV/c)", fontsize = fontsize)
         ax.set_ylabel(r"$R_{AA}$", fontsize = fontsize)
 
         S1 = AllData["systems"][0]
@@ -101,14 +109,19 @@ def MakePlot(Item):
         S2 = ToPlot[i]
 
         if i < len(Label):
-            ax.text(0.05, 0.95, Label[i],
+            ax.text(0.05, 0.94, Label[i],
                 verticalalignment='top', horizontalalignment='left',
                 transform = ax.transAxes, fontsize = fontsize)
+        if i < len(GuestLabel):
+            ax.text(0.95, 0.04, GuestLabel[i],
+                verticalalignment='bottom', horizontalalignment='right',
+                transform = ax.transAxes, fontsize = fontsize, color = 'red')
 
-        ax.set_ylim([0, 1.2])
+        ax.set_ylim([0, 1.35])
         ax.label_outer()
 
         if S2 not in AllData["data"][S1][O]:
+            ax.axis('off')
             continue
 
         DX = AllData["data"][S1][O][S2]['x']
@@ -120,19 +133,29 @@ def MakePlot(Item):
         if DoAlternate == True:
             for j, y in enumerate(TempPrediction2[S1][O][S2]):
                 if len(DX) > 1:
-                    ax.plot(DX, y, 'g-', alpha=0.05, label = args.AlternateLabel if j == 0 else '')
+                    ax.plot(DX, y, '-', alpha=0.05, color='goldenrod', label = args.AlternateLabel if j == 0 else '')
                 else:
-                    ax.plot([np.floor(DX[0] * 0.9), np.ceil(DX[0] * 1.1)], [y[0], y[0]], 'g-', alpha=0.05, label = args.AlternateLabel if j == 0 else '')
+                    ax.plot([np.floor(DX[0] * 0.9), np.ceil(DX[0] * 1.1)], [y[0], y[0]], '-', color='goldenrod', alpha=0.05, label = args.AlternateLabel if j == 0 else '')
         else:
             for j, y in enumerate(TempPrediction[S1][O][S2]):
                 if len(DX) > 1:
-                    ax.plot(DX, y, 'b-', alpha=0.025, label = 'Nominal' if j == 0 else '')
+                    ax.plot(DX, y, '-', color='royalblue', alpha=0.025, label = 'Nominal' if j == 0 else '')
                 else:
-                    ax.plot([np.floor(DX[0] * 0.9), np.ceil(DX[0] * 1.1)], [y[0], y[0]], 'b-', alpha=0.025, label = 'Nominal' if j == 0 else '')
+                    ax.plot([np.floor(DX[0] * 0.9), np.ceil(DX[0] * 1.1)], [y[0], y[0]], '-', color='royalblue', alpha=0.025, label = 'Nominal' if j == 0 else '')
+
+        if i < len(Guest) and Guest[i] != '':
+            ExtraData = np.loadtxt(Guest[i])
+
+            MakeErrorBoxes(ax, ExtraData[:,0], ExtraData[:,2], ExtraData[:,0] * 0.05, ExtraData[:,4], 'red', 'None', 0.5)
+            ax.errorbar(ExtraData[:,0], ExtraData[:,2], xerr = ExtraData[:,0] * 0.05, yerr = ExtraData[:,3], fmt = 'o', color = 'red')
 
         RangeX = DX[-1] - DX[0]
-        MakeErrorBoxes(ax, DX, DY, np.array([RangeX * 0.02] * len(DX)), DESys, 'r', 'None', 0.5)
-        ax.errorbar(DX, DY, yerr = DEStat, xerr = DX[-1] * 0.02, fmt='ro')
+        if i < len(Logx) and Logx[i] == True:
+            MakeErrorBoxes(ax, DX, DY, DX * 0.05, DESys, 'darkmagenta', 'None', 0.5)
+            ax.errorbar(DX, DY, yerr = DEStat, xerr = DX * 0.05, fmt='o', color='darkmagenta')
+        else:
+            MakeErrorBoxes(ax, DX, DY, np.array([RangeX * 0.02] * len(DX)), DESys, 'darkmagenta', 'None', 0.5)
+            ax.errorbar(DX, DY, yerr = DEStat, xerr = DX[-1] * 0.02, fmt='o', color='darkmagenta')
         ax.tick_params(axis = 'x', labelsize = fontsize)
         ax.tick_params(axis = 'y', labelsize = fontsize)
 
@@ -144,13 +167,16 @@ def MakePlot(Item):
             ax.get_xaxis().set_minor_formatter(NullFormatter())
             ax.tick_params(axis='x', which='minor', bottom=False)
 
+        if i < len(XRange) and XRange[i] != 'None':
+            ax.set_xlim(XRange[i])
+
     axes[0].set_title(Common, loc = 'left', fontsize = fontsize)
     # axes[len(axes)-1].legend(loc = 'upper right')
 
     plt.tight_layout()
     tag = AllData['tag']
     figure.savefig(f'result/{tag}/plots/SmallObservablePosterior{args.Suffix}{Suffix}.pdf', dpi = 192)
-    figure.savefig(f'result/{tag}/plots/SmallObservablePosterior{args.Suffix}{Suffix}.png', dpi = 192)
+    # figure.savefig(f'result/{tag}/plots/SmallObservablePosterior{args.Suffix}{Suffix}.png', dpi = 192)
     plt.close('all')
 
 

@@ -1,0 +1,655 @@
+BaseDirectory: 'input/STAT20221012Exponential/'
+Tag: 'STAT20221012ExponentialRBF_N4_PTUpTo100'
+Emulator:
+  NPC: 4
+  Kernel: 'RBFNoise'
+  NRetrain: 50
+  PCACheck: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,85, 90, 95]
+  # PCACheck: [10]
+MCMC:
+  NWalker: 50
+  NBurn: 2000
+  NStep: 1000
+Design:
+  File: 'Design.dat'
+  LogScale: [2, 3, 5]
+  ListToDelete: []
+  PoorManQALimit: 1.5
+  Range:
+    - [0.1, 0.5]
+    - [1, 10]
+    - [0.005, 10]
+    - [0.005, 10]
+    - [0, 1.5]
+    - [0.05, 100]
+DataCut:
+  MinPT: 9
+  MaxPT: 100
+Data:
+  ALICE_2760_Hadron_ch_0_5:
+    Attribute: {"Energy": 2760, "Observable": "HadronCh", "CentralityMin": 0, "CentralityMax": 5}
+    Data: 'Data_ALICE_PbPb2760_hadron_RAA_ch_0-5_2018.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    Prediction: 'Prediction_alice_PbPb2760exponential_hadron_pt_ch_0to5_values.dat'
+    PredictionError: 'Prediction_alice_PbPb2760exponential_hadron_pt_ch_0to5_errors.dat'
+    Correlation: {}
+  ALICE_2760_Hadron_ch_10_20:
+    Attribute: {"Energy": 2760, "Observable": "HadronCh", "CentralityMin": 10, "CentralityMax": 20}
+    Data: 'Data_ALICE_PbPb2760_hadron_RAA_ch_10-20_2018.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    Prediction: 'Prediction_alice_PbPb2760exponential_hadron_pt_ch_10to20_values.dat'
+    PredictionError: 'Prediction_alice_PbPb2760exponential_hadron_pt_ch_10to20_errors.dat'
+    Correlation: {}
+  ALICE_2760_Hadron_ch_20_30:
+    Attribute: {"Energy": 2760, "Observable": "HadronCh", "CentralityMin": 20, "CentralityMax": 30}
+    Data: 'Data_ALICE_PbPb2760_hadron_RAA_ch_20-30_2018.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    Prediction: 'Prediction_alice_PbPb2760exponential_hadron_pt_ch_20to30_values.dat'
+    PredictionError: 'Prediction_alice_PbPb2760exponential_hadron_pt_ch_20to30_errors.dat'
+    Correlation: {}
+  ALICE_2760_Hadron_ch_30_40:
+    Attribute: {"Energy": 2760, "Observable": "HadronCh", "CentralityMin": 30, "CentralityMax": 40}
+    Data: 'Data_ALICE_PbPb2760_hadron_RAA_ch_30-40_2018.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    Prediction: 'Prediction_alice_PbPb2760exponential_hadron_pt_ch_30to40_values.dat'
+    PredictionError: 'Prediction_alice_PbPb2760exponential_hadron_pt_ch_30to40_errors.dat'
+    Correlation: {}
+  ALICE_2760_Hadron_ch_40_50:
+    Attribute: {"Energy": 2760, "Observable": "HadronCh", "CentralityMin": 40, "CentralityMax": 50}
+    Data: 'Data_ALICE_PbPb2760_hadron_RAA_ch_40-50_2018.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    Prediction: 'Prediction_alice_PbPb2760exponential_hadron_pt_ch_40to50_values.dat'
+    PredictionError: 'Prediction_alice_PbPb2760exponential_hadron_pt_ch_40to50_errors.dat'
+    Correlation: {}
+  ALICE_2760_Hadron_ch_5_10:
+    Attribute: {"Energy": 2760, "Observable": "HadronCh", "CentralityMin": 5, "CentralityMax": 10}
+    Data: 'Data_ALICE_PbPb2760_hadron_RAA_ch_5-10_2018.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    Prediction: 'Prediction_alice_PbPb2760exponential_hadron_pt_ch_5to10_values.dat'
+    PredictionError: 'Prediction_alice_PbPb2760exponential_hadron_pt_ch_5to10_errors.dat'
+    Correlation: {}
+  ALICE_2760_Hadron_pi0_0_10:
+    Attribute: {"Energy": 2760, "Observable": "HadronPi0", "CentralityMin": 0, "CentralityMax": 10}
+    Data: 'Data_ALICE_PbPb2760_hadron_RAA_pi0_0-10_2018.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11]
+    Prediction: 'Prediction_alice_PbPb2760exponential_hadron_pt_pi0_0to10_values.dat'
+    PredictionError: 'Prediction_alice_PbPb2760exponential_hadron_pt_pi0_0to10_errors.dat'
+    Correlation: {}
+  ALICE_2760_Hadron_pi0_20_50:
+    Attribute: {"Energy": 2760, "Observable": "HadronPi0", "CentralityMin": 20, "CentralityMax": 50}
+    Data: 'Data_ALICE_PbPb2760_hadron_RAA_pi0_20-50_2018.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11]
+    Prediction: 'Prediction_alice_PbPb2760exponential_hadron_pt_pi0_20to50_values.dat'
+    PredictionError: 'Prediction_alice_PbPb2760exponential_hadron_pt_pi0_20to50_errors.dat'
+    Correlation: {}
+  ALICE_2760_Hadron_pi_0_5:
+    Attribute: {"Energy": 2760, "Observable": "HadronPi", "CentralityMin": 0, "CentralityMax": 5}
+    Data: 'Data_ALICE_PbPb2760_hadron_RAA_pi_0-5_2016.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]
+    Prediction: 'Prediction_alice_PbPb2760exponential_hadron_pt_pi_0to5_values.dat'
+    PredictionError: 'Prediction_alice_PbPb2760exponential_hadron_pt_pi_0to5_errors.dat'
+    Correlation: {}
+  ALICE_2760_Hadron_pi_10_20:
+    Attribute: {"Energy": 2760, "Observable": "HadronPi", "CentralityMin": 10, "CentralityMax": 20}
+    Data: 'Data_ALICE_PbPb2760_hadron_RAA_pi_10-20_2016.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]
+    Prediction: 'Prediction_alice_PbPb2760exponential_hadron_pt_pi_10to20_values.dat'
+    PredictionError: 'Prediction_alice_PbPb2760exponential_hadron_pt_pi_10to20_errors.dat'
+    Correlation: {}
+  ALICE_2760_Hadron_pi_20_40:
+    Attribute: {"Energy": 2760, "Observable": "HadronPi", "CentralityMin": 20, "CentralityMax": 40}
+    Data: 'Data_ALICE_PbPb2760_hadron_RAA_pi_20-40_2016.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]
+    Prediction: 'Prediction_alice_PbPb2760exponential_hadron_pt_pi_20to40_values.dat'
+    PredictionError: 'Prediction_alice_PbPb2760exponential_hadron_pt_pi_20to40_errors.dat'
+    Correlation: {}
+  ALICE_2760_Hadron_pi_5_10:
+    Attribute: {"Energy": 2760, "Observable": "HadronPi", "CentralityMin": 5, "CentralityMax": 10}
+    Data: 'Data_ALICE_PbPb2760_hadron_RAA_pi_5-10_2016.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]
+    Prediction: 'Prediction_alice_PbPb2760exponential_hadron_pt_pi_5to10_values.dat'
+    PredictionError: 'Prediction_alice_PbPb2760exponential_hadron_pt_pi_5to10_errors.dat'
+    Correlation: {}
+  # ALICE_2760_ChargedJet_R02_0_10:
+  #   Attribute: {"Energy": 2760, "Observable": "ChargedJetR02", "CentralityMin": 0, "CentralityMax": 10}
+  #   Data: 'Data_ALICE_PbPb2760_inclusive_chjet_RCP_R02_0-10_2014.dat'
+  #   Prediction: 'Prediction_alice_PbPb2760exponential_inclusive_chjet_pt_R0.2_0to10_values.dat'
+  #   ErrorPrediction: 'Prediction_alice_PbPb2760exponential_inclusive_chjet_pt_R0.2_0to10_errors.dat'
+  #   Correlation: {"sys,shape": 0.2, "sys,corr": 999}
+  # ALICE_2760_ChargedJet_R03_0_10:
+  #   Attribute: {"Energy": 2760, "Observable": "ChargedJetR03", "CentralityMin": 0, "CentralityMax": 10}
+  #   Data: 'Data_ALICE_PbPb2760_inclusive_chjet_RCP_R03_0-10_2014.dat'
+  #   Prediction: 'Prediction_alice_PbPb2760exponential_inclusive_chjet_pt_R0.3_0to10_values.dat'
+  #   ErrorPrediction: 'Prediction_alice_PbPb2760exponential_inclusive_chjet_pt_R0.3_0to10_errors.dat'
+  #   Correlation: {"sys,shape": 0.2, "sys,corr": 999}
+  ALICE_2760_Jet_R02_0_10:
+    Attribute: {"Energy": 2760, "Observable": "JetR02", "CentralityMin": 0, "CentralityMax": 10}
+    Data: 'Data_ALICE_PbPb2760_inclusive_jet_RAA_R02_0-10_2011.dat'
+    Prediction: 'Prediction_alice_PbPb2760exponential_inclusive_jet_pt_R0.2_0to10_values.dat'
+    PredictionError: 'Prediction_alice_PbPb2760exponential_inclusive_jet_pt_R0.2_0to10_errors.dat'
+    Correlation: {"sys,shape": 0.2, "sys,corr": 999, "sys,TAA": 999}
+  ALICE_2760_Jet_R02_10_30:
+    Attribute: {"Energy": 2760, "Observable": "JetR02", "CentralityMin": 10, "CentralityMax": 30}
+    Data: 'Data_ALICE_PbPb2760_inclusive_jet_RAA_R02_10-30_2011.dat'
+    Prediction: 'Prediction_alice_PbPb2760exponential_inclusive_jet_pt_R0.2_10to30_values.dat'
+    PredictionError: 'Prediction_alice_PbPb2760exponential_inclusive_jet_pt_R0.2_10to30_errors.dat'
+    Correlation: {"sys,shape": 0.2, "sys,corr": 999, "sys,TAA": 999}
+  ALICE_5020_Hadron_ch_0_5:
+    Attribute: {"Energy": 5020, "Observable": "HadronCh", "CentralityMin": 0, "CentralityMax": 5}
+    Data: 'Data_ALICE_PbPb5020_hadron_RAA_ch_0-5_2018.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    Prediction: 'Prediction_alice_PbPb5020exponential_hadron_pt_ch_0to5_values.dat'
+    PredictionError: 'Prediction_alice_PbPb5020exponential_hadron_pt_ch_0to5_errors.dat'
+    Correlation: {}
+  ALICE_5020_Hadron_ch_10_20:
+    Attribute: {"Energy": 5020, "Observable": "HadronCh", "CentralityMin": 10, "CentralityMax": 20}
+    Data: 'Data_ALICE_PbPb5020_hadron_RAA_ch_10-20_2018.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    PredictionMissing: [13, 15, 103]
+    Prediction: 'Prediction_alice_PbPb5020exponential_hadron_pt_ch_10to20_values.dat'
+    PredictionError: 'Prediction_alice_PbPb5020exponential_hadron_pt_ch_10to20_errors.dat'
+    Correlation: {}
+  ALICE_5020_Hadron_ch_20_30:
+    Attribute: {"Energy": 5020, "Observable": "HadronCh", "CentralityMin": 20, "CentralityMax": 30}
+    Data: 'Data_ALICE_PbPb5020_hadron_RAA_ch_20-30_2018.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    PredictionMissing: [103]
+    Prediction: 'Prediction_alice_PbPb5020exponential_hadron_pt_ch_20to30_values.dat'
+    PredictionError: 'Prediction_alice_PbPb5020exponential_hadron_pt_ch_20to30_errors.dat'
+    Correlation: {}
+  ALICE_5020_Hadron_ch_30_40:
+    Attribute: {"Energy": 5020, "Observable": "HadronCh", "CentralityMin": 30, "CentralityMax": 40}
+    Data: 'Data_ALICE_PbPb5020_hadron_RAA_ch_30-40_2018.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    PredictionMissing: [103]
+    Prediction: 'Prediction_alice_PbPb5020exponential_hadron_pt_ch_30to40_values.dat'
+    PredictionError: 'Prediction_alice_PbPb5020exponential_hadron_pt_ch_30to40_errors.dat'
+    Correlation: {}
+  ALICE_5020_Hadron_ch_40_50:
+    Attribute: {"Energy": 5020, "Observable": "HadronCh", "CentralityMin": 40, "CentralityMax": 50}
+    Data: 'Data_ALICE_PbPb5020_hadron_RAA_ch_40-50_2018.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    Prediction: 'Prediction_alice_PbPb5020exponential_hadron_pt_ch_40to50_values.dat'
+    PredictionError: 'Prediction_alice_PbPb5020exponential_hadron_pt_ch_40to50_errors.dat'
+    Correlation: {}
+  ALICE_5020_Hadron_ch_5_10:
+    Attribute: {"Energy": 5020, "Observable": "HadronCh", "CentralityMin": 5, "CentralityMax": 10}
+    Data: 'Data_ALICE_PbPb5020_hadron_RAA_ch_5-10_2018.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    Prediction: 'Prediction_alice_PbPb5020exponential_hadron_pt_ch_5to10_values.dat'
+    PredictionError: 'Prediction_alice_PbPb5020exponential_hadron_pt_ch_5to10_errors.dat'
+    Correlation: {}
+  ALICE_5020_Hadron_pi_0_5:
+    Attribute: {"Energy": 5020, "Observable": "HadronPi", "CentralityMin": 0, "CentralityMax": 5}
+    Data: 'Data_ALICE_PbPb5020_hadron_RAA_pi_0-5_2020.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42]
+    Prediction: 'Prediction_alice_PbPb5020exponential_hadron_pt_pi_0to5_values.dat'
+    PredictionError: 'Prediction_alice_PbPb5020exponential_hadron_pt_pi_0to5_errors.dat'
+    Correlation: {}
+  ALICE_5020_Hadron_pi_10_20:
+    Attribute: {"Energy": 5020, "Observable": "HadronPi", "CentralityMin": 10, "CentralityMax": 20}
+    Data: 'Data_ALICE_PbPb5020_hadron_RAA_pi_10-20_2020.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42]
+    PredictionMissing: [13, 15, 103]
+    Prediction: 'Prediction_alice_PbPb5020exponential_hadron_pt_pi_10to20_values.dat'
+    PredictionError: 'Prediction_alice_PbPb5020exponential_hadron_pt_pi_10to20_errors.dat'
+    Correlation: {}
+  ALICE_5020_Hadron_pi_20_30:
+    Attribute: {"Energy": 5020, "Observable": "HadronPi", "CentralityMin": 20, "CentralityMax": 30}
+    Data: 'Data_ALICE_PbPb5020_hadron_RAA_pi_20-30_2020.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42]
+    PredictionMissing: [103]
+    Prediction: 'Prediction_alice_PbPb5020exponential_hadron_pt_pi_20to30_values.dat'
+    PredictionError: 'Prediction_alice_PbPb5020exponential_hadron_pt_pi_20to30_errors.dat'
+    Correlation: {}
+  ALICE_5020_Hadron_pi_30_40:
+    Attribute: {"Energy": 5020, "Observable": "HadronPi", "CentralityMin": 30, "CentralityMax": 40}
+    Data: 'Data_ALICE_PbPb5020_hadron_RAA_pi_30-40_2020.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42]
+    PredictionMissing: [103]
+    Prediction: 'Prediction_alice_PbPb5020exponential_hadron_pt_pi_30to40_values.dat'
+    PredictionError: 'Prediction_alice_PbPb5020exponential_hadron_pt_pi_30to40_errors.dat'
+    Correlation: {}
+  ALICE_5020_Hadron_pi_40_50:
+    Attribute: {"Energy": 5020, "Observable": "HadronPi", "CentralityMin": 40, "CentralityMax": 50}
+    Data: 'Data_ALICE_PbPb5020_hadron_RAA_pi_40-50_2020.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42]
+    Prediction: 'Prediction_alice_PbPb5020exponential_hadron_pt_pi_40to50_values.dat'
+    PredictionError: 'Prediction_alice_PbPb5020exponential_hadron_pt_pi_40to50_errors.dat'
+    Correlation: {}
+  ALICE_5020_Hadron_pi_5_10:
+    Attribute: {"Energy": 5020, "Observable": "HadronPi", "CentralityMin": 5, "CentralityMax": 10}
+    Data: 'Data_ALICE_PbPb5020_hadron_RAA_pi_5-10_2020.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42]
+    Prediction: 'Prediction_alice_PbPb5020exponential_hadron_pt_pi_5to10_values.dat'
+    PredictionError: 'Prediction_alice_PbPb5020exponential_hadron_pt_pi_5to10_errors.dat'
+    Correlation: {}
+  ALICE_5020_Jet_R02_0_10:
+    Attribute: {"Energy": 5020, "Observable": "JetR02", "CentralityMin": 0, "CentralityMax": 10}
+    Data: 'Data_ALICE_PbPb5020_inclusive_jet_RAA_R02_0-10_2015.dat'
+    Prediction: 'Prediction_alice_PbPb5020exponential_inclusive_jet_pt_R0.2_0to10_values.dat'
+    PredictionError: 'Prediction_alice_PbPb5020exponential_inclusive_jet_pt_R0.2_0to10_errors.dat'
+    Correlation: {"sys,correlated": 999, "sys,shape": 0.2, "sys,lumi+TAA": 999}
+  ALICE_5020_Jet_R04_0_10:
+    Attribute: {"Energy": 5020, "Observable": "JetR04", "CentralityMin": 0, "CentralityMax": 10}
+    Data: 'Data_ALICE_PbPb5020_inclusive_jet_RAA_R04_0-10_2015.dat'
+    Prediction: 'Prediction_alice_PbPb5020exponential_inclusive_jet_pt_R0.4_0to10_values.dat'
+    PredictionError: 'Prediction_alice_PbPb5020exponential_inclusive_jet_pt_R0.4_0to10_errors.dat'
+    Correlation: {"sys,correlated": 999, "sys,shape": 0.2, "sys,lumi+TAA": 999}
+  ATLAS_2760_Hadron_ch_0_5:
+    Attribute: {"Energy": 2760, "Observable": "HadronCh", "CentralityMin": 0, "CentralityMax": 5}
+    Data: 'Data_ATLAS_PbPb2760_hadron_RAA_ch_0-5_2015.dat'
+    Prediction: 'Prediction_atlas_PbPb2760exponential_hadron_pt_ch_0to5_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb2760exponential_hadron_pt_ch_0to5_errors.dat'
+    PredictionExclude: [0]
+    Correlation: {}
+  ATLAS_2760_Hadron_ch_10_20:
+    Attribute: {"Energy": 2760, "Observable": "HadronCh", "CentralityMin": 10, "CentralityMax": 20}
+    Data: 'Data_ATLAS_PbPb2760_hadron_RAA_ch_10-20_2015.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    Prediction: 'Prediction_atlas_PbPb2760exponential_hadron_pt_ch_10to20_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb2760exponential_hadron_pt_ch_10to20_errors.dat'
+    Correlation: {}
+  ATLAS_2760_Hadron_ch_20_30:
+    Attribute: {"Energy": 2760, "Observable": "HadronCh", "CentralityMin": 20, "CentralityMax": 30}
+    Data: 'Data_ATLAS_PbPb2760_hadron_RAA_ch_20-30_2015.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    Prediction: 'Prediction_atlas_PbPb2760exponential_hadron_pt_ch_20to30_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb2760exponential_hadron_pt_ch_20to30_errors.dat'
+    Correlation: {}
+  ATLAS_2760_Hadron_ch_30_40:
+    Attribute: {"Energy": 2760, "Observable": "HadronCh", "CentralityMin": 30, "CentralityMax": 40}
+    Data: 'Data_ATLAS_PbPb2760_hadron_RAA_ch_30-40_2015.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    Prediction: 'Prediction_atlas_PbPb2760exponential_hadron_pt_ch_30to40_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb2760exponential_hadron_pt_ch_30to40_errors.dat'
+    Correlation: {}
+  ATLAS_2760_Hadron_ch_40_50:
+    Attribute: {"Energy": 2760, "Observable": "HadronCh", "CentralityMin": 40, "CentralityMax": 50}
+    Data: 'Data_ATLAS_PbPb2760_hadron_RAA_ch_40-50_2015.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    Prediction: 'Prediction_atlas_PbPb2760exponential_hadron_pt_ch_40to50_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb2760exponential_hadron_pt_ch_40to50_errors.dat'
+    Correlation: {}
+  ATLAS_2760_Hadron_ch_5_10:
+    Attribute: {"Energy": 2760, "Observable": "HadronCh", "CentralityMin": 5, "CentralityMax": 10}
+    Data: 'Data_ATLAS_PbPb2760_hadron_RAA_ch_5-10_2015.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    Prediction: 'Prediction_atlas_PbPb2760exponential_hadron_pt_ch_5to10_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb2760exponential_hadron_pt_ch_5to10_errors.dat'
+    Correlation: {}
+  ATLAS_2760_Jet_R04_0_10:
+    Attribute: {"Energy": 2760, "Observable": "JetR04", "CentralityMin": 0, "CentralityMax": 10}
+    Data: 'Data_ATLAS_PbPb2760_inclusive_jet_RAA_R04_0-10_2011.dat'
+    Prediction: 'Prediction_atlas_PbPb2760exponential_inclusive_jet_pt_R0.4_0to10_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb2760exponential_inclusive_jet_pt_R0.4_0to10_errors.dat'
+    Correlation: {"sys,corr": 0.2, "sys,uncorr": 0, "sys,luminosity_uncertainty": 999, "sys,TAA_uncertainty": 999}
+  ATLAS_2760_Jet_R04_10_20:
+    Attribute: {"Energy": 2760, "Observable": "JetR04", "CentralityMin": 10, "CentralityMax": 20}
+    Data: 'Data_ATLAS_PbPb2760_inclusive_jet_RAA_R04_10-20_2011.dat'
+    Prediction: 'Prediction_atlas_PbPb2760exponential_inclusive_jet_pt_R0.4_10to20_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb2760exponential_inclusive_jet_pt_R0.4_10to20_errors.dat'
+    Correlation: {"sys,corr": 0.2, "sys,uncorr": 0, "sys,luminosity_uncertainty": 999, "sys,TAA_uncertainty": 999}
+  ATLAS_2760_Jet_R04_20_30:
+    Attribute: {"Energy": 2760, "Observable": "JetR04", "CentralityMin": 20, "CentralityMax": 30}
+    Data: 'Data_ATLAS_PbPb2760_inclusive_jet_RAA_R04_20-30_2011.dat'
+    Prediction: 'Prediction_atlas_PbPb2760exponential_inclusive_jet_pt_R0.4_20to30_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb2760exponential_inclusive_jet_pt_R0.4_20to30_errors.dat'
+    Correlation: {"sys,corr": 0.2, "sys,uncorr": 0, "sys,luminosity_uncertainty": 999, "sys,TAA_uncertainty": 999}
+  ATLAS_2760_Jet_R04_30_40:
+    Attribute: {"Energy": 2760, "Observable": "JetR04", "CentralityMin": 30, "CentralityMax": 40}
+    Data: 'Data_ATLAS_PbPb2760_inclusive_jet_RAA_R04_30-40_2011.dat'
+    Prediction: 'Prediction_atlas_PbPb2760exponential_inclusive_jet_pt_R0.4_30to40_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb2760exponential_inclusive_jet_pt_R0.4_30to40_errors.dat'
+    Correlation: {"sys,corr": 0.2, "sys,uncorr": 0, "sys,luminosity_uncertainty": 999, "sys,TAA_uncertainty": 999}
+  ATLAS_2760_Jet_R04_40_50:
+    Attribute: {"Energy": 2760, "Observable": "JetR04", "CentralityMin": 40, "CentralityMax": 50}
+    Data: 'Data_ATLAS_PbPb2760_inclusive_jet_RAA_R04_40-50_2011.dat'
+    Prediction: 'Prediction_atlas_PbPb2760exponential_inclusive_jet_pt_R0.4_40to50_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb2760exponential_inclusive_jet_pt_R0.4_40to50_errors.dat'
+    Correlation: {"sys,corr": 0.2, "sys,uncorr": 0, "sys,luminosity_uncertainty": 999, "sys,TAA_uncertainty": 999}
+  ATLAS_5020_Jet_R04_0_10:
+    Attribute: {"Energy": 5020, "Observable": "JetR04", "CentralityMin": 0, "CentralityMax": 10}
+    Data: 'Data_ATLAS_PbPb5020_inclusive_jet_RAA_R04_0-10_2015.dat'
+    Prediction: 'Prediction_atlas_PbPb5020exponential_inclusive_jet_pt_R0.4_0to10_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb5020exponential_inclusive_jet_pt_R0.4_0to10_errors.dat'
+    Correlation: {"sys_TAA_uncertainty": 999, "sys_luminosity_uncertainty": 999}
+  ATLAS_5020_Jet_R04_10_20:
+    Attribute: {"Energy": 5020, "Observable": "JetR04", "CentralityMin": 10, "CentralityMax": 20}
+    Data: 'Data_ATLAS_PbPb5020_inclusive_jet_RAA_R04_10-20_2015.dat'
+    PredictionMissing: [13, 15, 103]
+    Prediction: 'Prediction_atlas_PbPb5020exponential_inclusive_jet_pt_R0.4_10to20_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb5020exponential_inclusive_jet_pt_R0.4_10to20_errors.dat'
+    Correlation: {"sys_TAA_uncertainty": 999, "sys_luminosity_uncertainty": 999}
+  ATLAS_5020_Jet_R04_20_30:
+    Attribute: {"Energy": 5020, "Observable": "JetR04", "CentralityMin": 20, "CentralityMax": 30}
+    Data: 'Data_ATLAS_PbPb5020_inclusive_jet_RAA_R04_20-30_2015.dat'
+    PredictionMissing: [103]
+    Prediction: 'Prediction_atlas_PbPb5020exponential_inclusive_jet_pt_R0.4_20to30_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb5020exponential_inclusive_jet_pt_R0.4_20to30_errors.dat'
+    Correlation: {"sys_TAA_uncertainty": 999, "sys_luminosity_uncertainty": 999}
+  ATLAS_5020_Jet_R04_30_40:
+    Attribute: {"Energy": 5020, "Observable": "JetR04", "CentralityMin": 30, "CentralityMax": 40}
+    Data: 'Data_ATLAS_PbPb5020_inclusive_jet_RAA_R04_30-40_2015.dat'
+    PredictionMissing: [103]
+    Prediction: 'Prediction_atlas_PbPb5020exponential_inclusive_jet_pt_R0.4_30to40_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb5020exponential_inclusive_jet_pt_R0.4_30to40_errors.dat'
+    Correlation: {"sys_TAA_uncertainty": 999, "sys_luminosity_uncertainty": 999}
+  ATLAS_5020_Jet_R04_40_50:
+    Attribute: {"Energy": 5020, "Observable": "JetR04", "CentralityMin": 40, "CentralityMax": 50}
+    Data: 'Data_ATLAS_PbPb5020_inclusive_jet_RAA_R04_40-50_2015.dat'
+    Prediction: 'Prediction_atlas_PbPb5020exponential_inclusive_jet_pt_R0.4_40to50_values.dat'
+    PredictionError: 'Prediction_atlas_PbPb5020exponential_inclusive_jet_pt_R0.4_40to50_errors.dat'
+    Correlation: {"sys_TAA_uncertainty": 999, "sys_luminosity_uncertainty": 999}
+  CMS_2760_Hadron_ch_0_5:
+    Attribute: {"Energy": 2760, "Observable": "HadronCh", "CentralityMin": 0, "CentralityMax": 5}
+    Data: 'Data_CMS_PbPb2760_hadron_RAA_ch_0-5_2012.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11]
+    Prediction: 'Prediction_cms_PbPb2760exponential_hadron_pt_ch_0to5_values.dat'
+    PredictionError: 'Prediction_cms_PbPb2760exponential_hadron_pt_ch_0to5_errors.dat'
+    Correlation: {}
+  CMS_2760_Hadron_ch_10_30:
+    Attribute: {"Energy": 2760, "Observable": "HadronCh", "CentralityMin": 10, "CentralityMax": 30}
+    Data: 'Data_CMS_PbPb2760_hadron_RAA_ch_10-30_2012.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11]
+    Prediction: 'Prediction_cms_PbPb2760exponential_hadron_pt_ch_10to30_values.dat'
+    PredictionError: 'Prediction_cms_PbPb2760exponential_hadron_pt_ch_10to30_errors.dat'
+    Correlation: {}
+  CMS_2760_Hadron_ch_5_10:
+    Attribute: {"Energy": 2760, "Observable": "HadronCh", "CentralityMin": 5, "CentralityMax": 10}
+    Data: 'Data_CMS_PbPb2760_hadron_RAA_ch_5-10_2012.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11]
+    Prediction: 'Prediction_cms_PbPb2760exponential_hadron_pt_ch_5to10_values.dat'
+    PredictionError: 'Prediction_cms_PbPb2760exponential_hadron_pt_ch_5to10_errors.dat'
+    Correlation: {}
+  CMS_2760_Jet_R02_0_5:
+    Attribute: {"Energy": 2760, "Observable": "JetR02", "CentralityMin": 0, "CentralityMax": 5}
+    Data: 'Data_CMS_PbPb2760_inclusive_jet_RAA_R02_0-5_2011.dat'
+    Prediction: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.2_0to5_values.dat'
+    PredictionError: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.2_0to5_errors.dat'
+    Correlation: {}
+  CMS_2760_Jet_R02_10_30:
+    Attribute: {"Energy": 2760, "Observable": "JetR02", "CentralityMin": 10, "CentralityMax": 30}
+    Data: 'Data_CMS_PbPb2760_inclusive_jet_RAA_R02_10-30_2011.dat'
+    Prediction: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.2_10to30_values.dat'
+    PredictionError: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.2_10to30_errors.dat'
+    Correlation: {}
+  CMS_2760_Jet_R02_30_50:
+    Attribute: {"Energy": 2760, "Observable": "JetR02", "CentralityMin": 30, "CentralityMax": 50}
+    Data: 'Data_CMS_PbPb2760_inclusive_jet_RAA_R02_30-50_2011.dat'
+    Prediction: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.2_30to50_values.dat'
+    PredictionError: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.2_30to50_errors.dat'
+    Correlation: {}
+  CMS_2760_Jet_R02_5_10:
+    Attribute: {"Energy": 2760, "Observable": "JetR02", "CentralityMin": 5, "CentralityMax": 10}
+    Data: 'Data_CMS_PbPb2760_inclusive_jet_RAA_R02_5-10_2011.dat'
+    Prediction: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.2_5to10_values.dat'
+    PredictionError: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.2_5to10_errors.dat'
+    Correlation: {}
+  CMS_2760_Jet_R03_0_5:
+    Attribute: {"Energy": 2760, "Observable": "JetR03", "CentralityMin": 0, "CentralityMax": 5}
+    Data: 'Data_CMS_PbPb2760_inclusive_jet_RAA_R03_0-5_2011.dat'
+    Prediction: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.3_0to5_values.dat'
+    PredictionError: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.3_0to5_errors.dat'
+    Correlation: {}
+  CMS_2760_Jet_R03_10_30:
+    Attribute: {"Energy": 2760, "Observable": "JetR03", "CentralityMin": 10, "CentralityMax": 30}
+    Data: 'Data_CMS_PbPb2760_inclusive_jet_RAA_R03_10-30_2011.dat'
+    Prediction: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.3_10to30_values.dat'
+    PredictionError: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.3_10to30_errors.dat'
+    Correlation: {}
+  CMS_2760_Jet_R03_30_50:
+    Attribute: {"Energy": 2760, "Observable": "JetR03", "CentralityMin": 30, "CentralityMax": 50}
+    Data: 'Data_CMS_PbPb2760_inclusive_jet_RAA_R03_30-50_2011.dat'
+    Prediction: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.3_30to50_values.dat'
+    PredictionError: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.3_30to50_errors.dat'
+    Correlation: {}
+  CMS_2760_Jet_R03_5_10:
+    Attribute: {"Energy": 2760, "Observable": "JetR03", "CentralityMin": 5, "CentralityMax": 10}
+    Data: 'Data_CMS_PbPb2760_inclusive_jet_RAA_R03_5-10_2011.dat'
+    Prediction: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.3_5to10_values.dat'
+    PredictionError: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.3_5to10_errors.dat'
+    Correlation: {}
+  CMS_2760_Jet_R04_0_5:
+    Attribute: {"Energy": 2760, "Observable": "JetR04", "CentralityMin": 0, "CentralityMax": 5}
+    Data: 'Data_CMS_PbPb2760_inclusive_jet_RAA_R04_0-5_2011.dat'
+    Prediction: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.4_0to5_values.dat'
+    PredictionError: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.4_0to5_errors.dat'
+    Correlation: {}
+  CMS_2760_Jet_R04_10_30:
+    Attribute: {"Energy": 2760, "Observable": "JetR04", "CentralityMin": 10, "CentralityMax": 30}
+    Data: 'Data_CMS_PbPb2760_inclusive_jet_RAA_R04_10-30_2011.dat'
+    Prediction: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.4_10to30_values.dat'
+    PredictionError: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.4_10to30_errors.dat'
+    Correlation: {}
+  CMS_2760_Jet_R04_30_50:
+    Attribute: {"Energy": 2760, "Observable": "JetR04", "CentralityMin": 30, "CentralityMax": 50}
+    Data: 'Data_CMS_PbPb2760_inclusive_jet_RAA_R04_30-50_2011.dat'
+    Prediction: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.4_30to50_values.dat'
+    PredictionError: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.4_30to50_errors.dat'
+    Correlation: {}
+  CMS_2760_Jet_R04_5_10:
+    Attribute: {"Energy": 2760, "Observable": "JetR04", "CentralityMin": 5, "CentralityMax": 10}
+    Data: 'Data_CMS_PbPb2760_inclusive_jet_RAA_R04_5-10_2011.dat'
+    Prediction: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.4_5to10_values.dat'
+    PredictionError: 'Prediction_cms_PbPb2760exponential_inclusive_jet_pt_R0.4_5to10_errors.dat'
+    Correlation: {}
+  CMS_5020_Hadron_ch_0_5:
+    Attribute: {"Energy": 5020, "Observable": "HadronCh", "CentralityMin": 0, "CentralityMax": 5}
+    Data: 'Data_CMS_PbPb5020_hadron_RAA_ch_0-5_2017.dat'
+    Prediction: 'Prediction_cms_PbPb5020exponential_hadron_pt_ch_0to5_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_hadron_pt_ch_0to5_errors.dat'
+    PredictionExclude: [0, 1]
+    Correlation: {"sys,TAA": 999, "sys,lumi": 999}
+  CMS_5020_Hadron_ch_10_30:
+    Attribute: {"Energy": 5020, "Observable": "HadronCh", "CentralityMin": 10, "CentralityMax": 30}
+    Data: 'Data_CMS_PbPb5020_hadron_RAA_ch_10-30_2017.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13]
+    PredictionMissing: [103]
+    Prediction: 'Prediction_cms_PbPb5020exponential_hadron_pt_ch_10to30_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_hadron_pt_ch_10to30_errors.dat'
+    Correlation: {"sys,TAA": 999, "sys,lumi": 999}
+  CMS_5020_Hadron_ch_30_50:
+    Attribute: {"Energy": 5020, "Observable": "HadronCh", "CentralityMin": 30, "CentralityMax": 50}
+    Data: 'Data_CMS_PbPb5020_hadron_RAA_ch_30-50_2017.dat'
+    Prediction: 'Prediction_cms_PbPb5020exponential_hadron_pt_ch_30to50_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_hadron_pt_ch_30to50_errors.dat'
+    PredictionExclude: [0, 1]
+    Correlation: {"sys,TAA": 999, "sys,lumi": 999}
+  CMS_5020_Hadron_ch_5_10:
+    Attribute: {"Energy": 5020, "Observable": "HadronCh", "CentralityMin": 5, "CentralityMax": 10}
+    Data: 'Data_CMS_PbPb5020_hadron_RAA_ch_5-10_2017.dat'
+    Prediction: 'Prediction_cms_PbPb5020exponential_hadron_pt_ch_5to10_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_hadron_pt_ch_5to10_errors.dat'
+    PredictionExclude: [0, 1]
+    Correlation: {"sys,TAA": 999, "sys,lumi": 999}
+  CMS_5020_Jet_R02_0_10:
+    Attribute: {"Energy": 5020, "Observable": "JetR02", "CentralityMin": 0, "CentralityMax": 10}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R02_0-10_2015.dat'
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.2_0to10_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.2_0to10_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R02_10_30:
+    Attribute: {"Energy": 5020, "Observable": "JetR02", "CentralityMin": 10, "CentralityMax": 30}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R02_10-30_2015.dat'
+    PredictionMissing: [103]
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.2_10to30_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.2_10to30_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R02_30_50:
+    Attribute: {"Energy": 5020, "Observable": "JetR02", "CentralityMin": 30, "CentralityMax": 50}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R02_30-50_2015.dat'
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.2_30to50_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.2_30to50_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R03_0_10:
+    Attribute: {"Energy": 5020, "Observable": "JetR03", "CentralityMin": 0, "CentralityMax": 10}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R03_0-10_2015.dat'
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.3_0to10_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.3_0to10_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R03_10_30:
+    Attribute: {"Energy": 5020, "Observable": "JetR03", "CentralityMin": 10, "CentralityMax": 30}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R03_10-30_2015.dat'
+    PredictionMissing: [103]
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.3_10to30_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.3_10to30_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R03_30_50:
+    Attribute: {"Energy": 5020, "Observable": "JetR03", "CentralityMin": 30, "CentralityMax": 50}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R03_30-50_2015.dat'
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.3_30to50_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.3_30to50_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R04_0_10:
+    Attribute: {"Energy": 5020, "Observable": "JetR04", "CentralityMin": 0, "CentralityMax": 10}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R04_0-10_2015.dat'
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.4_0to10_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.4_0to10_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R04_10_30:
+    Attribute: {"Energy": 5020, "Observable": "JetR04", "CentralityMin": 10, "CentralityMax": 30}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R04_10-30_2015.dat'
+    PredictionMissing: [103]
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.4_10to30_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.4_10to30_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R04_30_50:
+    Attribute: {"Energy": 5020, "Observable": "JetR04", "CentralityMin": 30, "CentralityMax": 50}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R04_30-50_2015.dat'
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.4_30to50_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.4_30to50_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R06_0_10:
+    Attribute: {"Energy": 5020, "Observable": "JetR06", "CentralityMin": 0, "CentralityMax": 10}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R06_0-10_2015.dat'
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.6_0to10_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.6_0to10_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R06_10_30:
+    Attribute: {"Energy": 5020, "Observable": "JetR06", "CentralityMin": 10, "CentralityMax": 30}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R06_10-30_2015.dat'
+    PredictionMissing: [103]
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.6_10to30_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.6_10to30_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R06_30_50:
+    Attribute: {"Energy": 5020, "Observable": "JetR06", "CentralityMin": 30, "CentralityMax": 50}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R06_30-50_2015.dat'
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.6_30to50_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.6_30to50_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R08_0_10:
+    Attribute: {"Energy": 5020, "Observable": "JetR08", "CentralityMin": 0, "CentralityMax": 10}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R08_0-10_2015.dat'
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.8_0to10_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.8_0to10_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R08_10_30:
+    Attribute: {"Energy": 5020, "Observable": "JetR08", "CentralityMin": 10, "CentralityMax": 30}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R08_10-30_2015.dat'
+    PredictionMissing: [103]
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.8_10to30_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.8_10to30_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R08_30_50:
+    Attribute: {"Energy": 5020, "Observable": "JetR08", "CentralityMin": 30, "CentralityMax": 50}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R08_30-50_2015.dat'
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.8_30to50_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R0.8_30to50_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R10_0_10:
+    Attribute: {"Energy": 5020, "Observable": "JetR10", "CentralityMin": 0, "CentralityMax": 10}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R10_0-10_2015.dat'
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R1.0_0to10_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R1.0_0to10_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R10_10_30:
+    Attribute: {"Energy": 5020, "Observable": "JetR10", "CentralityMin": 10, "CentralityMax": 30}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R10_10-30_2015.dat'
+    PredictionMissing: [103]
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R1.0_10to30_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R1.0_10to30_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  CMS_5020_Jet_R10_30_50:
+    Attribute: {"Energy": 5020, "Observable": "JetR10", "CentralityMin": 30, "CentralityMax": 50}
+    Data: 'Data_CMS_PbPb5020_inclusive_jet_RAA_R10_30-50_2015.dat'
+    Prediction: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R1.0_30to50_values.dat'
+    PredictionError: 'Prediction_cms_PbPb5020exponential_inclusive_jet_pt_R1.0_30to50_errors.dat'
+    Correlation: {"TAA": 999, "lumi": 999}
+  PHENIX_200_Hadron_pi0_0_10:
+    Attribute: {"Energy": 200, "Observable": "HadronPi0", "CentralityMin": 0, "CentralityMax": 10}
+    Data: 'Data_PHENIX_AuAu200_hadron_RAA_pi0_0-10_2013.dat'
+    Prediction: 'Prediction_phenix_AuAu200exponential_hadron_pt_pi0_0to10_values.dat'
+    PredictionError: 'Prediction_phenix_AuAu200exponential_hadron_pt_pi0_0to10_errors.dat'
+    PredictionExclude: [0, 1, 2, 3, 4, 5, 6, 7]
+    Correlation: {}
+  PHENIX_200_Hadron_pi0_10_20:
+    Attribute: {"Energy": 200, "Observable": "HadronPi0", "CentralityMin": 10, "CentralityMax": 20}
+    Data: 'Data_PHENIX_AuAu200_hadron_RAA_pi0_10-20_2013.dat'
+    Prediction: 'Prediction_phenix_AuAu200exponential_hadron_pt_pi0_10to20_values.dat'
+    PredictionError: 'Prediction_phenix_AuAu200exponential_hadron_pt_pi0_10to20_errors.dat'
+    Correlation: {"global": 999}
+  PHENIX_200_Hadron_pi0_20_30:
+    Attribute: {"Energy": 200, "Observable": "HadronPi0", "CentralityMin": 20, "CentralityMax": 30}
+    Data: 'Data_PHENIX_AuAu200_hadron_RAA_pi0_20-30_2013.dat'
+    Prediction: 'Prediction_phenix_AuAu200exponential_hadron_pt_pi0_20to30_values.dat'
+    PredictionError: 'Prediction_phenix_AuAu200exponential_hadron_pt_pi0_20to30_errors.dat'
+    Correlation: {"global": 999}
+  PHENIX_200_Hadron_pi0_30_40:
+    Attribute: {"Energy": 200, "Observable": "HadronPi0", "CentralityMin": 30, "CentralityMax": 40}
+    Data: 'Data_PHENIX_AuAu200_hadron_RAA_pi0_30-40_2013.dat'
+    Prediction: 'Prediction_phenix_AuAu200exponential_hadron_pt_pi0_30to40_values.dat'
+    PredictionError: 'Prediction_phenix_AuAu200exponential_hadron_pt_pi0_30to40_errors.dat'
+    Correlation: {"global": 999}
+  PHENIX_200_Hadron_pi0_40_50:
+    Attribute: {"Energy": 200, "Observable": "HadronPi0", "CentralityMin": 40, "CentralityMax": 50}
+    Data: 'Data_PHENIX_AuAu200_hadron_RAA_pi0_40-50_2013.dat'
+    Prediction: 'Prediction_phenix_AuAu200exponential_hadron_pt_pi0_40to50_values.dat'
+    PredictionError: 'Prediction_phenix_AuAu200exponential_hadron_pt_pi0_40to50_errors.dat'
+    PredictionExclude: [0, 1, 2, 3, 4, 5, 6, 7]
+    Correlation: {}
+  STAR_200_Hadron_ch_0_5:
+    Attribute: {"Energy": 200, "Observable": "HadronCh", "CentralityMin": 0, "CentralityMax": 5}
+    Data: 'Data_STAR_AuAu200_hadron_RAA_ch_0-5_2003.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
+    Prediction: 'Prediction_star_AuAu200exponential_hadron_pt_ch_0to5_values.dat'
+    PredictionError: 'Prediction_star_AuAu200exponential_hadron_pt_ch_0to5_errors.dat'
+    Correlation: {}
+  STAR_200_Hadron_ch_10_20:
+    Attribute: {"Energy": 200, "Observable": "HadronCh", "CentralityMin": 10, "CentralityMax": 20}
+    Data: 'Data_STAR_AuAu200_hadron_RAA_ch_10-20_2003.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
+    Prediction: 'Prediction_star_AuAu200exponential_hadron_pt_ch_10to20_values.dat'
+    PredictionError: 'Prediction_star_AuAu200exponential_hadron_pt_ch_10to20_errors.dat'
+    Correlation: {}
+  STAR_200_Hadron_ch_20_30:
+    Attribute: {"Energy": 200, "Observable": "HadronCh", "CentralityMin": 20, "CentralityMax": 30}
+    Data: 'Data_STAR_AuAu200_hadron_RAA_ch_20-30_2003.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
+    Prediction: 'Prediction_star_AuAu200exponential_hadron_pt_ch_20to30_values.dat'
+    PredictionError: 'Prediction_star_AuAu200exponential_hadron_pt_ch_20to30_errors.dat'
+    Correlation: {}
+  STAR_200_Hadron_ch_30_40:
+    Attribute: {"Energy": 200, "Observable": "HadronCh", "CentralityMin": 30, "CentralityMax": 40}
+    Data: 'Data_STAR_AuAu200_hadron_RAA_ch_30-40_2003.dat'
+    DataExclude: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
+    Prediction: 'Prediction_star_AuAu200exponential_hadron_pt_ch_30to40_values.dat'
+    PredictionError: 'Prediction_star_AuAu200exponential_hadron_pt_ch_30to40_errors.dat'
+    Correlation: {}
+  STAR_200_ChargedJet_R02_0_10:
+    Attribute: {"Energy": 200, "Observable": "ChargedJetR02", "CentralityMin": 0, "CentralityMax": 10}
+    Data: 'Data_STAR_AuAu200_inclusive_chjet_RAA_R02_0-10_2011.dat'
+    DataExclude: [0, 1, 2]
+    Prediction: 'Prediction_star_AuAu200exponential_inclusive_chjet_pt_R0.2_0to10_values.dat'
+    PredictionError: 'Prediction_star_AuAu200exponential_inclusive_chjet_pt_R0.2_0to10_errors.dat'
+    Correlation: {"shape": 0.2, "correlated": 999}
+  STAR_200_ChargedJet_R04_0_10:
+    Attribute: {"Energy": 200, "Observable": "ChargedJetR04", "CentralityMin": 0, "CentralityMax": 10}
+    Data: 'Data_STAR_AuAu200_inclusive_chjet_RAA_R04_0-10_2011.dat'
+    DataExclude: [0, 1, 2]
+    Prediction: 'Prediction_star_AuAu200exponential_inclusive_chjet_pt_R0.4_0to10_values.dat'
+    PredictionError: 'Prediction_star_AuAu200exponential_inclusive_chjet_pt_R0.4_0to10_errors.dat'
+    Correlation: {"shape": 0.2, "correlated": 999}
+
+
