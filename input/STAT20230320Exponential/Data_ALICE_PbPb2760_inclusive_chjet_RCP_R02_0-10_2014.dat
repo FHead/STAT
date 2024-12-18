@@ -1,0 +1,15 @@
+# Version 1.0
+# DOI https://doi.org/10.17182/hepdata.62723
+# Source https://www.hepdata.net/download/table/ins1263194/Table%2021/1/yaml
+# Experiment ALICE
+# System PbPb2760
+# Centrality 0-10
+# XY PT(jet) RCP
+# Label xmin xmax y stat,low stat,high sys,shape,low sys,shape,high sys,corr,low sys,corr,high 
+20.0 30.0 0.3268 0.0426 0.0426 0.0172 0.0804 0.0171 0.0171
+30.0 40.0 0.3169 0.0354 0.0354 0.0448 0.0469 0.0103 0.0103
+40.0 50.0 0.4185 0.0605 0.0605 0.0203 0.0488 0.0191 0.0259
+50.0 60.0 0.5482 0.0976 0.0976 0.0817 0.0822 0.0387 0.0454
+60.0 70.0 0.5359 0.1123 0.1123 0.0883 0.0405 0.0388 0.0452
+70.0 80.0 0.4563 0.1212 0.1212 0.0616 0.0929 0.0252 0.0313
+80.0 90.0 0.3767 0.1451 0.1451 0.1402 0.0459 0.0125 0.0187
